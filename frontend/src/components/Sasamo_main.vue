@@ -25,7 +25,7 @@
       </section>
     </div>
     <div class="preview-container">
-      <video id="preview" muted autoplay playsinline></video>
+      <video id="preview"></video>
     </div>
   </div>
 </template>
