@@ -6,6 +6,8 @@ var secretObj = require('../config/jwt')
 var mysql_dbc = require('../model/db/db_conn')();
 var connection = mysql_dbc.init();
 
+const CODE_KEY = 'rkffk220'
+
 const resModel = () => {
 	return {
 		success: Boolean,
@@ -23,6 +25,38 @@ const loginModel = () => {
 } 
 
 const levelList = ['A', 'B', 'C', 'D']
+
+// QR스캔 데이터 + 유저 데이터 비교 
+
+router.post('/scan/user', (res, req) => {
+    const {id, key} = req.body 
+    let data = resModel()
+    if( CODE_KEY == key) {
+        const query = `select * from ssm_member where ssm_seq = ${id}`
+        connection.query(query, (err, result) => {
+            if(err){
+                data.success = false
+                data.error = err
+                console.log(err)
+                res.send(data)
+                throw err
+            } else {
+                console.log('DATA  : ', result[0])
+                data.success = true 
+                data.data = result[0]
+                res.send(data)
+
+            }
+        })
+
+    } else {
+        data.error = 'userDataNullException'
+        data.data = '교적부에 등록되어 있지 않습니다. 교번을 확인해주세요.'
+        res.send(data)
+
+
+    }
+})
 
 
 // 로그인 

@@ -8,6 +8,7 @@ var indexRouter = require('./routes/index');
 var moviesRouter = require('./routes/movies');
 var sasamoRouter = require('./routes/sasamo');
 var adminRouter = require('./routes/sasamo_admin');
+const QRscanRouter = require('./routes/QRscan')
 
 
 var app = express();
@@ -29,6 +30,7 @@ app.use('/', indexRouter);
 app.use('/api/movies', moviesRouter);
 app.use('/api/sasamo', sasamoRouter);
 app.use('/api/admin', adminRouter);
+app.use('/api/QR/', QRscanRouter)
 app.use(express.static('public'))
 
 // app.use('url', file) url로 접근할 때, file을 사용한다.

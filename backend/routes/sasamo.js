@@ -564,9 +564,9 @@ router.post('/checkid', (req, res) => {
 
 router.post('/signup', function (req, res) {
 	console.log('REQ : data', req.body)
-	var query = `insert into ssm_member(ssm_name, ssm_id, ssm_pw, ssm_phone, ssm_gen, ssm_type, ssm_team, ssm_group) values `
+	var query = `insert into ssm_member(ssm_name, ssm_id, ssm_pw, ssm_phone, ssm_gen, ssm_type, ssm_team, ssm_group, ssm_level) values `
 	query += `('${req.body.ssm_name}','${req.body.ssm_id}','${req.body.ssm_pw}','${req.body.ssm_phone}',`
-	query += `'${req.body.ssm_gen}','${req.body.ssm_type}','${req.body.ssm_team}', 0)`;
+	query += `'${req.body.ssm_gen}','${req.body.ssm_type}','${req.body.ssm_team}', 0, 'E')`;
 	console.log(query)
 	connection.query(query, function (err, result) {
 		console.log('insert1')
