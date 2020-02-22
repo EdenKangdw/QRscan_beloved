@@ -16,17 +16,12 @@
     <form id="loginForm" @submit.prevent='login' action="/login">
         <table id="login">
             <tr>
-                <td>ID</td>
-                <td><input class="form-control" type="text" name="id" v-model="ssm_id"></td>
-            </tr>
-            <tr>
-                <td>비밀번호</td>
-                <td><input class="form-control" type="password" name="pw" v-model="ssm_pw"></td>
+                <td>교번 : </td>
+                <td><input class="form-control" type="text" name="id" v-model="userID"></td>
             </tr>
             <tr>
                 <td colspan="2">
                     <div id="wrapper_btn">
-                    <input class="btn btn-primary" type="button" value="회원가입" v-on:click="signup"> 
                     <input class="btn btn-primary" type="submit" value="로그인">
                     </div>
                 </td>
@@ -61,30 +56,15 @@ export default {
   data () {
     return {
       token: "",
-      greeting: "사역자님 안녕하세요!"
+      greeting: "사역자님 안녕하세요!",
     }
   },
   methods: {
       login() {
-				console.log(this.ssm_id, "id")
-      	if(this.ssm_id == null || this.ssm_pw == null){
-          alert("아이디와 비밀번호를 입력해주세요.")
-        }else {
-					this.$http.post('/api/sasamo/login', {
-          	id: this.ssm_id,
-            pw: this.ssm_pw
-        }).then((res) => {
-          	this.token = res.data
-            console.log("TOKEN :", res.data, typeof res.data)
-            if(res.data != 'fail'){
-              this.$store.commit("updateToken", res.data)
-              this.$router.push({ name: 'sasamo_main' })
-            }else{
-              console.log(res.data, '로그인 실패 아이디, 패스워드 오류')
-              alert("올바른 아이디와 비밀번호를 입력해주세요.")
-            }
-        	})
-        }
+        const userid = this.userID
+        console.log('-----------------',userid)
+        this.$router.push({ name: 'sasamo_main' , params: {id : userid}})
+           
       },
         signup() {
             this.$router.push({ name: 'sasamo_signup' })

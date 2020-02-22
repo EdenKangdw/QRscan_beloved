@@ -9,6 +9,7 @@ import { store } from '../src/store'
 import 'expose-loader?$!expose-loader?jQuery!jquery'
 import 'bootstrap'
 import './assets/bootstrap/bootstrap.css'
+import './assets/instascan/style.css'
 
 Vue.config.productionTip = false
 Vue.prototype.$http = axios

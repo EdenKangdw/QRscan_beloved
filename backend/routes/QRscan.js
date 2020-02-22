@@ -28,7 +28,8 @@ const levelList = ['A', 'B', 'C', 'D']
 
 // QR스캔 데이터 + 유저 데이터 비교 
 
-router.post('/scan/user', (res, req) => {
+router.post('/user', (req, res) => {
+    console.log('skadhfjlkjsdflj', req.body.key)
     const {id, key} = req.body 
     let data = resModel()
     if( CODE_KEY == key) {

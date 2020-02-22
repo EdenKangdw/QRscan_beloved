@@ -14,12 +14,14 @@ export default new Router({
     {
       path: '/',
       name: 'sasamo',
-      component: sasamo
+      component: sasamo,
+      props: true
     },
     {
-      path: '/main',
+      path: '/main/:id',
       name: 'sasamo_main',
-      component: sasamo_main
+      component: sasamo_main, 
+      props: true
     },
     {
       path: '/signup',
